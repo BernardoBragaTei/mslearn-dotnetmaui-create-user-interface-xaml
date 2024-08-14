@@ -1,8 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mycode="clr-namespace:Notes"
              x:Class="Notes.MainPage">
-			 
-   
+
+    <VerticalStackLayout
+        Padding="{OnPlatform iOS='30,60,30,30', Default='30'}"
+        BackgroundColor="{OnPlatform WinUI=Yellow, iOS=Silver, Android=Green}">
+        <!--<VerticalStackLayout.Padding>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="iOS" Value="30,60,30,30"/>
+                <On Platform="Android" Value="30"/>
+                <On Platform="WinUI" Value="30"/>
+            </OnPlatform>
+        </VerticalStackLayout.Padding>
+
+        <VerticalStackLayout.BackgroundColor>
+            <OnPlatform x:TypeArguments="Color">
+                <On Platform="iOS" Value="Silver"/>
+                <On Platform="Android" Value="Green"/>
+                <On Platform="WinUI" Value="Yellow"/>
+            </OnPlatform>
+        </VerticalStackLayout.BackgroundColor>-->
+        
+        <Label Text="Notes"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="{mycode:GlobalFontSize}"
+               TextColor="{x:Static Member=mycode:SharedResources.FontColor}"/>
+        
+        <Editor x:Name="editor"
+                Placeholder="Enter your note"
+                HeightRequest="{OnPlatform 100, Android=600, iOS=500, WinUI=100}"
+                TextColor="{x:Static Member=mycode:SharedResources.FontColor}"/>
+
+        <Grid ColumnDefinitions="Auto, 30, Auto"
+              HeightRequest="40">
+            <Button Grid.Column="0"
+                    x:Name="saveButton"
+                    Text="Save"
+                    WidthRequest="100"
+                    TextColor="{x:Static Member=mycode:SharedResources.FontColor}"
+                    BackgroundColor="{x:Static Member=mycode:SharedResources.BackgroundColor}"
+                    Clicked="OnSaveButtonClicked"/>
+            
+            <Button Grid.Column="2"
+                    x:Name="deletButton"
+                    Text="Delete"
+                    WidthRequest="100"
+                    TextColor="{x:Static Member=mycode:SharedResources.FontColor}"
+                    BackgroundColor="{x:Static Member=mycode:SharedResources.BackgroundColor}"
+                    Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+    </VerticalStackLayout>
  
 </ContentPage>
